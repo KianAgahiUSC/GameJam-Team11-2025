@@ -20,6 +20,14 @@ namespace SG
             base.Update();
 
             playerLocomotionManager.HandleAllMovement();
+;
+        }
+
+        protected override void LateUpdate()
+        {
+            base.LateUpdate();
+
+            PlayerCamera.instance.HandleAllCameraActions();
         }
     }
 }

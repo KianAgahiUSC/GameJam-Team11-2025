@@ -52,6 +52,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls = new UserActions();
              
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
+            playerControls.PlayerMovement.Movement.canceled += i => movementInput = i.ReadValue<Vector2>();
         }
 
         playerControls.Enable();
