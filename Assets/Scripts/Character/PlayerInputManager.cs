@@ -17,14 +17,19 @@ namespace SG
 
         [Header("PLAYER MOVEMENT INPUT")]
         [SerializeField] Vector2 movementInput;
-        public float verticalInput;
-        public float horizontalInput;
-        public float moveAmount;
+        [HideInInspector] public float verticalInput;
+        [HideInInspector] public float horizontalInput;
+        [HideInInspector] public float moveAmount;
 
         [Header("CAMERA MOVEMENT INPUT")]
         [SerializeField] Vector2 cameraInput;
         public float cameraVerticalInput;
         public float cameraHorizontalInput;
+
+        [Header("PLAYER ACTION INPUT")]
+        [SerializeField] bool dodgeInput = false;
+
+        public PlayerManager player;
 
         private void Awake()
         {
@@ -45,7 +50,6 @@ namespace SG
 
             instance.enabled = true;
 
-
         }
 
         private void OnSceneChange(Scene oldScene, Scene newScene)
@@ -64,6 +68,9 @@ namespace SG
 
                 playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
                 playerControls.PlayerCamera.Movement.canceled += i => cameraInput = i.ReadValue<Vector2>();
+
+                playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+                playerControls.PlayerActions.Dodge.canceled += i => dodgeInput = false;
             }
 
             playerControls.Enable();
@@ -74,6 +81,8 @@ namespace SG
             SceneManager.activeSceneChanged -= OnSceneChange;
         }
 
+         
+
         private void HandlePlayerMovementInput()
         {
             verticalInput = movementInput.y;
@@ -81,6 +90,8 @@ namespace SG
             //Debug.Log(verticalInput);
             //Debug.Log(horizontalInput);
             moveAmount = Mathf.Clamp01(Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput));
+
+            player.playerAnimationManager.UpdateAnimatorMovementParameters(0, moveAmount);
         }
 
         private void HandleCameraMovementInput()
@@ -89,10 +100,33 @@ namespace SG
             cameraHorizontalInput = cameraInput.x;
         }
 
+        private void HandleDodgeInput()
+        {
+            if (dodgeInput)
+            {
+                dodgeInput = false;
+
+                //COROUTINE
+
+                player.playerLocomotionManager.AttemptDodge();
+            }
+        }
+
+       
+
         private void Update()
+        {
+            HandleAllInputs();
+
+
+
+        }
+
+        private void HandleAllInputs()
         {
             HandlePlayerMovementInput();
             HandleCameraMovementInput();
+            HandleDodgeInput();
         }
     }
 }

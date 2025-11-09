@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2435412002107969618}
   - component: {fileID: -2973635486525868181}
   - component: {fileID: 5096131680949409367}
+  - component: {fileID: 7840288101845133567}
+  - component: {fileID: 2921434229117789463}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -120,6 +122,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aaea9e96f418604d93b4edc4bc55be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  characterController: {fileID: 0}
+  isDead: 0
+  isPerformingAction: 0
+  canRotate: 1
+  canMove: 1
+  health: 100
+  maxHealth: 100
+  playerLocomotionManager: {fileID: 0}
+  currentHealth: 0
 --- !u!114 &-2973635486525868181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +148,7 @@ MonoBehaviour:
   horizontalMovement: 0
   moveAmount: 0
   movementSpeed: 0
+  rotationSpeed: 0
 --- !u!143 &5096131680949409367
 CharacterController:
   m_ObjectHideFlags: 0
@@ -162,3 +175,36 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &7840288101845133567
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596941636833010649}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c817da6da203445458465c5c7808bc33, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2921434229117789463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596941636833010649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63dc44955322bfe4eb518b79d3c9f983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

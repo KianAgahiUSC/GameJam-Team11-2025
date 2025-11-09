@@ -48,3 +48,8 @@ MonoBehaviour:
   verticalInput: 0
   horizontalInput: 0
   moveAmount: 0
+  cameraInput: {x: 0, y: 0}
+  cameraVerticalInput: 0
+  cameraHorizontalInput: 0
+  dodgeInput: 0
+  player: {fileID: 2435412002107969618, guid: ed0be06c21faf3a4193c91bcfc33b0f5, type: 3}

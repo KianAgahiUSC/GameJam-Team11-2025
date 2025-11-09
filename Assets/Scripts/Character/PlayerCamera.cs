@@ -53,7 +53,7 @@ namespace SG {
         {
             if (player != null)
             {
-                Debug.Log("FOLLOW");
+                //Debug.Log("FOLLOW");
                 FollowTarget();
                 HandleRotations();
             }
